@@ -11,7 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128120941) do
+ActiveRecord::Schema.define(version: 20151128122706) do
+
+  create_table "atms", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "atms", ["user_id"], name: "index_atms_on_user_id", using: :btree
+
+  create_table "bike_accounts", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "bike_accounts", ["user_id"], name: "index_bike_accounts_on_user_id", using: :btree
+
+  create_table "car_accounts", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "car_accounts", ["user_id"], name: "index_car_accounts_on_user_id", using: :btree
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "home",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255
