@@ -74,14 +74,12 @@
 
 #login {
     margin-top: 1rem;
-    background-image: url(/images/tram_restricted.jpg);
+    background-image: url(tram_restricted.jpg);
     background-repeat: no-repeat;
 	background-position: top;
 }
-#button-log{
-    color: #333;
+#buttonlog{
     background-color: rgb(222,170,69);
-    border-color: #ccc;
 }
 form {
     color: rgb(222,170,69);

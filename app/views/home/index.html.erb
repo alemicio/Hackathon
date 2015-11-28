@@ -104,6 +104,9 @@
                 initial_location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 map.setCenter(initial_location);
 
+                alert(initial_location.lat());
+                alert(initial_location.lng());
+
                 // Create a marker and set its position.
                 var marker = new google.maps.Marker({
                     map: map,
@@ -159,22 +162,6 @@
                     map.setZoom(17);
                 }
             }
-
-            /*origin_autocomplete.addListener('place_changed', function () {
-                var place = origin_autocomplete.getPlace();
-                place.location = initial_location;
-                if (!place.geometry) {
-                    window.alert("Autocomplete's returned place contains no geometry");
-                    return;
-                }
-                expandViewportToFitPlace(map, place);
-
-                // If the place has a geometry, store its place ID and route if we have
-                // the other place ID
-                origin_place_id = place.place_id;
-                route(origin_place_id, destination_place_id, travel_mode,
-                        directionsService, directionsDisplay);
-            });*/
 
             destination_autocomplete.addListener('place_changed', function () {
                 var place = destination_autocomplete.getPlace();
