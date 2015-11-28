@@ -1,1 +1,119 @@
-ciaociao
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Map</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <style>
+      html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+      }
+      #map {
+          height: 60%;
+          border-radius: 16px 16px;
+          border-color: #fff;
+          border-style: solid;
+          box-shadow: 2px 2px 10px #B1B1B1;
+          margin-top: 25px;
+          border-width: 7px;
+      }
+      .controls {
+          margin-top: 10px;
+          border: 1px solid transparent;
+          border-radius: 2px 0 0 2px;
+          box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          height: 32px;
+          outline: none;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      #origin-input,
+      #destination-input {
+          background-color: #fff;
+          font-family: Roboto;
+          font-size: 15px;
+          font-weight: 300;
+          margin-left: 12px;
+          padding: 0 11px 0 13px;
+          text-overflow: ellipsis;
+          width: 200px;
+      }
+
+      #origin-input:focus,
+      #destination-input:focus {
+          border-color: #4d90fe;
+      }
+
+      #mode-selector {
+          color: #fff;
+          background-color: #4d90fe;
+          margin-left: 12px;
+          padding: 5px 11px 0px 11px;
+      }
+
+      #mode-selector label {
+          font-family: Roboto;
+          font-size: 13px;
+          font-weight: 300;
+      }
+  </style>
+
+  <script>
+      var map;
+      function initMap() {
+
+          var initial_location;
+          var destination_place_id = null;
+
+          // Here we are going to set the 'map' div with a map retrieved us from google
+          map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: -34.397, lng: 150.644},
+              zoom: 8
+          });
+
+          if(navigator.geolocation) {
+              browserSupportFlag = true;
+              navigator.geolocation.getCurrentPosition(function(position) {
+
+                  initial_location = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                  map.setCenter(initial_location);
+
+                  // Create a marker and set its position.
+                  var marker = new google.maps.Marker({
+                      map: map,
+                      position: initial_location,
+                      title: 'Hello World!'
+                  });
+              }, function() {
+
+                  handleNoGeolocation(browserSupportFlag);
+              });
+          }
+      }
+
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxSHtSoH87V4MVYnxjxjiczwvDbCHSGYA&callback=initMap"
+          async defer></script>
+</head>
+<body>
+
+    <input id="destination-input" class="controls" type="text"
+           placeholder="Enter a destination location">
+
+    <div id="mode-selector" class="controls">
+      <input type="radio" name="type" id="changemode-walking" checked="checked">
+      <label for="changemode-walking">Walking</label>
+
+      <input type="radio" name="type" id="changemode-transit">
+      <label for="changemode-transit">Transit</label>
+
+      <input type="radio" name="type" id="changemode-driving">
+      <label for="changemode-driving">Driving</label>
+    </div>
+
+    <div id="map"></div>
+</body>
+</html>
