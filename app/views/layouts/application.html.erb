@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<>
 <title>Hackaton</title>
 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -13,8 +12,11 @@
 <title>SmartMe</title>
 
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/common.css" rel="stylesheet">
+<!--<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/common.css" rel="stylesheet">-->
+<%= stylesheet_link_tag "bootstrap.min" %>
+<%= stylesheet_link_tag "common" %>
+<%= stylesheet_link_tag "bootstrap-theme.css" %>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

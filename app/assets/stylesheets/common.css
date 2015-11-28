@@ -1,0 +1,98 @@
+#animazioneiniziale {
+    text-align: center;
+    position: relative;
+    margin-top: 0.5rem;
+    background-color: rgb(80,130,136);
+}
+#footer{
+    margin-top: 0.5rem;
+    height: 10rem;
+    background-color: rgb(80,130,136);
+}
+#riga1{
+    position: relative;
+    -webkit-animation-name: riga1; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 6s; /* Chrome, Safari, Opera */
+    animation-name: riga1;
+    animation-duration: 6s;
+}
+#riga2{
+    position: relative;
+    -webkit-animation-name: riga2; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 6s; /* Chrome, Safari, Opera */
+    animation-name: riga2;
+    animation-duration: 6s;
+}
+#riga3{
+   position: relative;
+    -webkit-animation-name: riga3; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 6s; /* Chrome, Safari, Opera */
+    animation-name: riga3;
+    animation-duration: 6s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes intro {
+    0% {background-color: white; margin-top: 1rem;}
+    50% {background-color: rgb(80,130,136); margin-top: 20rem;}
+    100% {background-color: rgb(80,130,136); margin-top: 0.5rem;}
+}
+
+/* Standard syntax */
+@keyframes intro {
+    0% {background-color: white; margin-top: 1rem;}
+    50% {background-color: rgb(80,130,136); margin-top: 20rem;}
+    100% {background-color: rgb(80,130,136); margin-top: 0.5rem;}
+}
+
+@-webkit-keyframes riga1 {
+    from {left: -80rem;}
+    to {left: 0px;}
+}
+@keyframes riga1 {
+    from {left: -80rem;}
+    to {left: 0px;}
+}
+
+@-webkit-keyframes riga2 {
+    from {left: 160rem;}
+    to {left: 0px;}
+}
+@keyframes riga2 {
+    from {left: 160rem;}
+    to {left: 0px;}
+}
+
+@-webkit-keyframes riga3 {
+    from {left: -80rem;}
+    to {left: 0px;}
+}
+@keyframes riga3 {
+   from {left: -80rem;}
+    to {left: 0px;}
+}
+
+#login {
+    margin-top: 1rem;
+    background-image: url(/images/tram_restricted.jpg);
+    background-repeat: no-repeat;
+	background-position: top;
+}
+#button-log{
+    color: #333;
+    background-color: rgb(222,170,69);
+    border-color: #ccc;
+}
+form {
+    color: rgb(222,170,69);
+    margin-top: 0.5rem;
+}
+#carosello {
+    border-style: solid;
+	border-radius: 10px;
+	border-color: rgb(222,170,69);
+	border-width: 1rem;
+	padding: 0rem;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
