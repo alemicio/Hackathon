@@ -30,13 +30,17 @@ class MetroStationsController < ApplicationController
         min = distanza
       end
 
-      output_lat
-      output_lng
+      p output_lat
+      p output_lng
     end
+
+    metro_station = MetroStation.where(:DO_Y => (output_lat.to_f)-0.0000000000001..(output_lat.to_f)+0.0000000000001, :DO_X => (output_lng.to_f)-0.0000000000001..(output_lng.to_f)+0.0000000000001 ).first
+    p metro_name = metro_station.FERMATA
 
     @output = Hash.new
     p @output[:lat] = output_lat
     p @output[:lng] = output_lng
+    p @output[:metro_name] = metro_name
 
     respond_to do |format|
       format.html
