@@ -34,9 +34,13 @@ class RailStationsController < ApplicationController
       output_lng
     end
 
+    rail_station = RailStation.where(:DO_Y => (output_lat.to_f)-0.0000000000001..(output_lat.to_f)+0.0000000000001, :DO_X => (output_lng.to_f)-0.0000000000001..(output_lng.to_f)+0.0000000000001 ).first
+    p rail_station_name = rail_station.NOME
+
     @output = Hash.new
     p @output[:lat] = output_lat
     p @output[:lng] = output_lng
+    p @output[:rail_station_name] = rail_station_name
 
     respond_to do |format|
       format.html
