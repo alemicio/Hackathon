@@ -84,6 +84,7 @@
     var initial_location;
     var map = null;
     var markers = [];
+    var icon_base = "https://maps.google.com/mapfiles/kml/shapes/";
 
     function initMap() {
 
@@ -110,7 +111,8 @@
                 var marker = new google.maps.Marker({
                     map: map,
                     position: initial_location,
-                    title: 'CURRENT POSITION'
+                    title: 'CURRENT POSITION',
+                    icon: icon_base + 'homegardenbusiness.png'
                 });
 
                 markers.push(marker);
@@ -183,7 +185,8 @@
             var destination_marker = new google.maps.Marker({
                 map: map,
                 position: place.geometry.location,
-                title: 'DESTINATION'
+                title: 'DESTINATION',
+                icon: icon_base + 'ranger_station.png'
             });
 
             markers.push(destination_marker);
@@ -203,7 +206,8 @@
                     var rail_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
-                        title: 'NEAREST ARRIVAL RAIL STATION'
+                        title: 'NEAREST ARRIVAL RAIL STATION',
+                        icon: icon_base + 'rail.png'
                     });
 
                     markers.push(rail_marker);
@@ -225,7 +229,8 @@
                     var metro_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
-                        title: 'NEAREST ARRIVAL METRO STATION'
+                        title: 'NEAREST ARRIVAL METRO STATION',
+                        icon: icon_base + 'subway.png'
                     });
 
                     markers.push(metro_marker);
@@ -247,7 +252,8 @@
                     var line_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
-                        title: 'NEAREST ARRIVAL LINE STATION'
+                        title: 'NEAREST ARRIVAL LINE STATION',
+                        icon: icon_base + 'rec_bus.png'
                     });
 
                     markers.push(line_marker);
@@ -299,7 +305,8 @@
                 var line_marker = new google.maps.Marker({
                   map: map,
                   position: nearest_line_location,
-                  title: 'NEAREST DEPARTURE LINE STATION'
+                  title: 'NEAREST DEPARTURE LINE STATION',
+                  icon: icon_base + 'rec_bus.png'
                 });
 
                 markers.push(line_marker);
@@ -331,7 +338,8 @@
                 var metro_marker = new google.maps.Marker({
                   map: map,
                   position: nearest_metro_location,
-                  title: 'NEAREST DEPARTURE METRO STATION'
+                  title: 'NEAREST DEPARTURE METRO STATION',
+                  icon: icon_base + 'subway.png'
                 });
 
                 markers.push(metro_marker);
@@ -363,7 +371,8 @@
                             var rail_marker = new google.maps.Marker({
                                 map: map,
                                 position: nearest_station_location,
-                                title: 'NEAREST DEPARTURE RAIL STATION'
+                                title: 'NEAREST DEPARTURE RAIL STATION',
+                                icon: icon_base + 'rail.png'
                             });
 
                             markers.push(rail_marker);
@@ -393,7 +402,8 @@
                     var marker = new google.maps.Marker({
                         map: map,
                         position: initial_location,
-                        title: 'CURRENT POSITION'
+                        title: 'CURRENT POSITION',
+                        icon: icon_base + 'homegardenbusiness.png'
                     });
 
                     markers.push(marker);
