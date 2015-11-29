@@ -120,6 +120,7 @@
         //===============================================
 
         getNearestRailStation();
+        getNearestMetroStation();
 
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -219,6 +220,40 @@
                 }
             });
         }
+
+
+      function getNearestMetroStation(){
+
+        if (navigator.geolocation) {
+          browserSupportFlag = true;
+          navigator.geolocation.getCurrentPosition(function (position) {
+            initial_location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+            $.ajax({
+              type: "GET",
+              url: "/metro_stations",
+              data: { Lat: initial_location.lat(), Lng: initial_location.lng() } ,
+              dataType: "json",
+              success: function(data)
+              {
+                nearest_metro_location = new google.maps.LatLng(data.lat, data.lng);
+
+                alert("fuori metro");
+
+                // Create a marker and set its position.
+                var metro_marker = new google.maps.Marker({
+                  map: map,
+                  position: nearest_metro_location,
+                  title: 'NEAREST METRO STATION'
+                });
+              }
+            });
+          }, function () {
+            handleNoGeolocation(browserSupportFlag);
+          });
+        }
+      }
+
 
         function getNearestRailStation(){
 
