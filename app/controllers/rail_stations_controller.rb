@@ -8,25 +8,26 @@ class RailStationsController < ApplicationController
     output_lat = nil
     output_lng = nil
 
-    min_precedente = nil
+    min = nil
 
     @rail_stations = RailStation.all
 
     @rail_stations.each do |rail_station|
 
-      lat = (rail_station.DO_X)
-      lng = (rail_station.DO_Y)
+      lng = (rail_station.DO_X)
+      lat = (rail_station.DO_Y)
 
-      min_corrente = Math.hypot(input_lat.to_d - lat, input_lng.to_d - lng)
+      distanza = Math.hypot(BigDecimal.new(input_lat) - lat, BigDecimal.new(input_lng) - lng)
 
-      if(min_precedente === nil)
-        min_precedente = min_corrente
+      if(min === nil)
+        min = distanza
         output_lat = lat
         output_lng = lng
 
-      elsif(min_corrente < min_precedente)
+      elsif(distanza < min)
         output_lat = lat
         output_lng = lng
+        min = distanza
       end
 
       output_lat

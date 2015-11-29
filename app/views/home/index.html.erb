@@ -83,6 +83,8 @@
 
     var initial_location;
 
+    var map = null;
+
     function initMap() {
 
         var origin_place_id = null;
@@ -104,13 +106,11 @@
                 initial_location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 map.setCenter(initial_location);
 
-                alert(initial_location.lat());
-
                 // Create a marker and set its position.
                 var marker = new google.maps.Marker({
                     map: map,
                     position: initial_location,
-                    title: 'Hello World!'
+                    title: 'CURRENT POSITION'
                 });
             }, function () {
 
@@ -208,23 +208,22 @@
                         dataType: "json",
                         success: function(data)
                         {
-                            alert(data);
+                            nearest_station_location = new google.maps.LatLng(data.lat, data.lng);
+
+                            alert("fuori");
+
+                            // Create a marker and set its position.
+                            var station_marker = new google.maps.Marker({
+                                map: map,
+                                position: nearest_station_location,
+                                title: 'Hello World!'
+                            });
                         }
                     });
                 }, function () {
                     handleNoGeolocation(browserSupportFlag);
                 });
             }
-
-            /*$.ajax({
-                type: 'GET',
-                url: '/rail_stations',
-                dataType: 'json',
-                contentType: "application/json; charset=utf-8",
-                success: function(data) {
-                    alert(data);
-                }
-            });*/
         }
     }
 </script>
