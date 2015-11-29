@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   resources :rail_stations
   resources :metro_stations
+  resources :urban_lines
 end
