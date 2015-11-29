@@ -3,6 +3,10 @@
     position: relative;
     margin-top: 0.5rem;
     background-color: rgb(80,130,136);
+    -webkit-animation-name: intro; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+    animation-name: intro;
+    animation-duration: 4s;
 }
 #footer{
     margin-top: 0.5rem;
@@ -93,4 +97,14 @@ form {
 	padding: 0rem;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
+}
+#answer {
+    margin: 0.5rem;
+    font-size: 2rem;
+    text-align: left;
+    margin: 5rem;
+    background-color: rgb(222,170,69);
+    border-style: solid;
+    border-color: rgb(80,130,136);
+    border-radius: 1rem;
 }

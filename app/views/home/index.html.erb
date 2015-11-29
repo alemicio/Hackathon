@@ -76,8 +76,48 @@
   <input type="radio" name="type" id="changemode-driving">
   <label for="changemode-driving">Driving</label>
 </div>-->
-
 <div id="map"></div>
+
+<div class="container">
+
+  <div class="row" id="answer">
+    <div class="col-lg-2">
+      <h3>Metro from:</h3>
+    </div>
+    <div class="col-lg-5">
+        <p id="metro_departure"> ==>
+    </div>
+      <div class="col-lg-5">
+        <p id="metro_arrival">
+      </div>
+
+  </div>
+
+  <div class="row"id="answer">
+    <div class="col-lg-2">
+      <h3>Rail from:</h3>
+    </div>
+      <div class="col-lg-5">
+        <p id="rail_departure">==>
+      </div>
+      <div class="col-lg-5">
+        <p id="rail_arrival">
+      </div>
+  </div>
+
+  <div class="row" id="answer">
+    <div class="col-2">
+      <h3>Tram from:</h3>
+    </div>
+      <div class="col-lg-6">
+        <p id="line_departure">==>
+      </div>
+      <div class="col-lg-6">
+        <p id="line_arrival">
+      </div>
+    </div>
+
+</div>
 
 <script>
 
@@ -206,11 +246,12 @@
                     var rail_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
-                        title: 'NEAREST ARRIVAL RAIL STATION',
+                        title: data.rail_station_name,
                         icon: icon_base + 'rail.png'
                     });
 
                     markers.push(rail_marker);
+                    $("#rail_arrival").text(data.rail_station_name);
                 }
             });
 
@@ -229,11 +270,12 @@
                     var metro_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
-                        title: 'NEAREST ARRIVAL METRO STATION',
+                        title: data.metro_name,
                         icon: icon_base + 'subway.png'
                     });
 
                     markers.push(metro_marker);
+                    $("#metro_arrival").text(data.metro_name);
                 }
             });
 
@@ -252,11 +294,12 @@
                     var line_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
-                        title: 'NEAREST ARRIVAL LINE STATION',
+                        title: data.line_station_name,
                         icon: icon_base + 'rec_bus.png'
                     });
 
                     markers.push(line_marker);
+                    $("#line_arrival").text(data.line_station_name);
                 }
             });
 
@@ -305,11 +348,12 @@
                 var line_marker = new google.maps.Marker({
                   map: map,
                   position: nearest_line_location,
-                  title: 'NEAREST DEPARTURE LINE STATION',
+                  title: data.line_station_name,
                   icon: icon_base + 'rec_bus.png'
                 });
 
                 markers.push(line_marker);
+                $("#line_departure").text(data.line_station_name);
               }
             });
           }, function () {
@@ -343,6 +387,7 @@
                 });
 
                 markers.push(metro_marker);
+                $("#metro_departure").text(data.metro_name);
               }
             });
           }, function () {
@@ -371,11 +416,12 @@
                             var rail_marker = new google.maps.Marker({
                                 map: map,
                                 position: nearest_station_location,
-                                title: 'NEAREST DEPARTURE RAIL STATION',
+                                title: data.rail_station_name,
                                 icon: icon_base + 'rail.png'
                             });
 
                             markers.push(rail_marker);
+                            $("#rail_departure").text(data.rail_station_name);
                         }
                     });
                 }, function () {

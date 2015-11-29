@@ -34,9 +34,13 @@ class UrbanLinesController < ApplicationController
       output_lng
     end
 
+    line_station = UrbanLine.where(:DO_Y => (output_lat.to_f)-0.0000000000001..(output_lat.to_f)+0.0000000000001, :DO_X => (output_lng.to_f)-0.0000000000001..(output_lng.to_f)+0.0000000000001 ).first
+    p line_station_name = line_station.UBICAZIONE
+
     @output = Hash.new
     p @output[:lat] = output_lat
     p @output[:lng] = output_lng
+    p @output[:line_station_name] = line_station_name
 
     respond_to do |format|
       format.html
