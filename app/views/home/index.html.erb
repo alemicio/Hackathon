@@ -66,7 +66,7 @@
 <input id="destination-input" class="controls" type="text"
        placeholder="Enter a destination location">
 
-<div id="mode-selector" class="controls">
+<!--<div id="mode-selector" class="controls">
   <input type="radio" name="type" id="changemode-walking" checked="checked">
   <label for="changemode-walking">Walking</label>
 
@@ -75,7 +75,7 @@
 
   <input type="radio" name="type" id="changemode-driving">
   <label for="changemode-driving">Driving</label>
-</div>
+</div>-->
 
 <div id="map"></div>
 
@@ -149,16 +149,16 @@
 
         // Sets a listener on a radio button to change the filter type on Places
         // Autocomplete.
-        function setupClickListener(id, mode) {
+        /*function setupClickListener(id, mode) {
             var radioButton = document.getElementById(id);
             radioButton.addEventListener('click', function () {
                 travel_mode = mode;
             });
-        }
+        }*/
 
-        setupClickListener('changemode-walking', google.maps.TravelMode.WALKING);
-        setupClickListener('changemode-transit', google.maps.TravelMode.TRANSIT);
-        setupClickListener('changemode-driving', google.maps.TravelMode.DRIVING);
+        //setupClickListener('changemode-walking', google.maps.TravelMode.WALKING);
+        //setupClickListener('changemode-transit', google.maps.TravelMode.TRANSIT);
+        //setupClickListener('changemode-driving', google.maps.TravelMode.DRIVING);
 
         function expandViewportToFitPlace(map, place) {
             if (place.geometry.viewport) {
