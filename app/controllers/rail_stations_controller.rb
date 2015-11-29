@@ -9,7 +9,8 @@ class RailStationsController < ApplicationController
 
     @rail_stations.each do |rail_station|
 
-
+      p lat = (rail_station.DO_X).to_digits
+      p lng = (rail_station.DO_Y).to_digits
     end
 
     respond_to do |format|
