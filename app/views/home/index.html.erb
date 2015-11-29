@@ -239,8 +239,6 @@
               {
                 nearest_line_location = new google.maps.LatLng(data.lat, data.lng);
 
-                alert("fuori line");
-
                 // Create a marker and set its position.
                 var line_marker = new google.maps.Marker({
                   map: map,
@@ -271,8 +269,6 @@
               success: function(data)
               {
                 nearest_metro_location = new google.maps.LatLng(data.lat, data.lng);
-
-                alert("fuori metro");
 
                 // Create a marker and set its position.
                 var metro_marker = new google.maps.Marker({
