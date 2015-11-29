@@ -90,7 +90,7 @@
 
         var origin_place_id = null;
         var destination_place_id = null;
-        var travel_mode = google.maps.TravelMode.WALKING;
+        var travel_mode = google.maps.TravelMode.TRANSIT;
 
         // Map creation
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -419,6 +419,24 @@
             getNearestRailStation();
             getNearestMetroStation();
             getNearestLineStation()
+        }
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, lat_i, lng_i, lat_f, lng_f) {
+            var selectedMode = document.getElementById('mode').value;
+            directionsService.route({
+                origin: {lat: lat_i, lng: lng_i},
+                destination: {lat: lat_f, lng: lng_f},
+                // Note that Javascript allows us to access the constant
+                // using square brackets and a string value as its
+                // "property."
+                travelMode: google.maps.TravelMode[selectedMode]
+            }, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
         }
     }
 </script>
