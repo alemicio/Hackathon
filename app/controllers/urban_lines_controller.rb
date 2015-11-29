@@ -10,9 +10,9 @@ class UrbanLinesController < ApplicationController
 
     min = nil
 
-    @urban_line = UrbanLine.all
+    @urban_lines = UrbanLine.all
 
-    @urban_line.each do |urban_line|
+    @urban_lines.each do |urban_line|
 
       lng = (urban_line.DO_X)
       lat = (urban_line.DO_Y)

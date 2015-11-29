@@ -196,7 +196,7 @@
                     var station_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
-                        title: 'NEAREST ARRIVAL STATION'
+                        title: 'NEAREST ARRIVAL RAIL STATION'
                     });
                 }
             });
@@ -216,7 +216,7 @@
                     var station_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
-                        title: 'NEAREST ARRIVAL STATION'
+                        title: 'NEAREST ARRIVAL METRO STATION'
                     });
                 }
             });
@@ -225,7 +225,7 @@
             // the line station nearer to the destination
             $.ajax({
                 type: "GET",
-                url: "/line_stations",
+                url: "/urban_lines",
                 data: { Lat: place.geometry.location.lat(), Lng: place.geometry.location.lng() } ,
                 dataType: "json",
                 success: function(data)
@@ -236,7 +236,7 @@
                     var station_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
-                        title: 'NEAREST ARRIVAL STATION'
+                        title: 'NEAREST ARRIVAL LINE STATION'
                     });
                 }
             });
@@ -286,7 +286,7 @@
                 var line_marker = new google.maps.Marker({
                   map: map,
                   position: nearest_line_location,
-                  title: 'NEAREST LINE STATION'
+                  title: 'NEAREST DEPARTURE LINE STATION'
                 });
               }
             });
@@ -316,7 +316,7 @@
                 var metro_marker = new google.maps.Marker({
                   map: map,
                   position: nearest_metro_location,
-                  title: 'NEAREST METRO STATION'
+                  title: 'NEAREST DEPARTURE METRO STATION'
                 });
               }
             });
@@ -346,7 +346,7 @@
                             var station_marker = new google.maps.Marker({
                                 map: map,
                                 position: nearest_station_location,
-                                title: 'NEAREST DEPARTURE STATION'
+                                title: 'NEAREST DEPARTURE RAIL STATION'
                             });
                         }
                     });
