@@ -177,6 +177,24 @@
                 title: 'DESTINATION'
             });
 
+            $.ajax({
+                type: "GET",
+                url: "/rail_stations",
+                data: { Lat: place.geometry.location.lat(), Lng: place.geometry.location.lng() } ,
+                dataType: "json",
+                success: function(data)
+                {
+                    nearest_station_location = new google.maps.LatLng(data.lat, data.lng);
+
+                    // Create a marker and set its position.
+                    var station_marker = new google.maps.Marker({
+                        map: map,
+                        position: nearest_station_location,
+                        title: 'NEAREST ARRIVAL STATION'
+                    });
+                }
+            });
+
             /*// If the place has a geometry, store its place ID and route if we have
             // the other place ID
             destination_place_id = place.place_id;
@@ -218,13 +236,11 @@
                         {
                             nearest_station_location = new google.maps.LatLng(data.lat, data.lng);
 
-                            alert("fuori");
-
                             // Create a marker and set its position.
                             var station_marker = new google.maps.Marker({
                                 map: map,
                                 position: nearest_station_location,
-                                title: 'NEAREST STATION'
+                                title: 'NEAREST DEPARTURE STATION'
                             });
                         }
                     });
