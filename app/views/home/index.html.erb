@@ -82,8 +82,8 @@
 <script>
 
     var initial_location;
-
     var map = null;
+    var markers = [];
 
     function initMap() {
 
@@ -112,6 +112,8 @@
                     position: initial_location,
                     title: 'CURRENT POSITION'
                 });
+
+                markers.push(marker);
             }, function () {
 
                 handleNoGeolocation(browserSupportFlag);
@@ -167,6 +169,9 @@
 
         // Function triggered since we have defined our destination
         destination_autocomplete.addListener('place_changed', function () {
+
+            resetMap();
+
             var place = destination_autocomplete.getPlace();
             if (!place.geometry) {
                 window.alert("Autocomplete's returned place contains no geometry");
@@ -181,6 +186,8 @@
                 title: 'DESTINATION'
             });
 
+            markers.push(destination_marker);
+
             // This ajax call sends a get request to the rails endpoint that will retrieve
             // the rail station nearer to the destination
             $.ajax({
@@ -193,11 +200,13 @@
                     nearest_station_location = new google.maps.LatLng(data.lat, data.lng);
 
                     // Create a marker and set its position.
-                    var station_marker = new google.maps.Marker({
+                    var rail_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
                         title: 'NEAREST ARRIVAL RAIL STATION'
                     });
+
+                    markers.push(rail_marker);
                 }
             });
 
@@ -213,11 +222,13 @@
                     nearest_station_location = new google.maps.LatLng(data.lat, data.lng);
 
                     // Create a marker and set its position.
-                    var station_marker = new google.maps.Marker({
+                    var metro_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
                         title: 'NEAREST ARRIVAL METRO STATION'
                     });
+
+                    markers.push(metro_marker);
                 }
             });
 
@@ -233,11 +244,13 @@
                     nearest_station_location = new google.maps.LatLng(data.lat, data.lng);
 
                     // Create a marker and set its position.
-                    var station_marker = new google.maps.Marker({
+                    var line_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
                         title: 'NEAREST ARRIVAL LINE STATION'
                     });
+
+                    markers.push(line_marker);
                 }
             });
 
@@ -288,6 +301,8 @@
                   position: nearest_line_location,
                   title: 'NEAREST DEPARTURE LINE STATION'
                 });
+
+                markers.push(line_marker);
               }
             });
           }, function () {
@@ -318,6 +333,8 @@
                   position: nearest_metro_location,
                   title: 'NEAREST DEPARTURE METRO STATION'
                 });
+
+                markers.push(metro_marker);
               }
             });
           }, function () {
@@ -343,17 +360,55 @@
                             nearest_station_location = new google.maps.LatLng(data.lat, data.lng);
 
                             // Create a marker and set its position.
-                            var station_marker = new google.maps.Marker({
+                            var rail_marker = new google.maps.Marker({
                                 map: map,
                                 position: nearest_station_location,
                                 title: 'NEAREST DEPARTURE RAIL STATION'
                             });
+
+                            markers.push(rail_marker);
                         }
                     });
                 }, function () {
                     handleNoGeolocation(browserSupportFlag);
                 });
             }
+        }
+
+        function resetMap(){
+
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+
+            //=============== Marker creation ===============
+            if (navigator.geolocation) {
+                browserSupportFlag = true;
+                navigator.geolocation.getCurrentPosition(function (position) {
+
+                    initial_location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.setCenter(initial_location);
+
+                    // Create a marker and set its position.
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: initial_location,
+                        title: 'CURRENT POSITION'
+                    });
+
+                    markers.push(marker);
+                }, function () {
+
+                    handleNoGeolocation(browserSupportFlag);
+                });
+            }
+            //===============================================
+
+            // These methods are called in order to create 3 markers corresponding, respectively,
+            // to: nearest rails station; nearest metro station; nearest line station
+            getNearestRailStation();
+            getNearestMetroStation();
+            getNearestLineStation()
         }
     }
 </script>
