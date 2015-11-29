@@ -119,6 +119,8 @@
         }
         //===============================================
 
+        // These methods are called in order to create 3 markers corresponding, respectively,
+        // to: nearest rails station; nearest metro station; nearest line station
         getNearestRailStation();
         getNearestMetroStation();
         getNearestLineStation()
@@ -179,6 +181,8 @@
                 title: 'DESTINATION'
             });
 
+            // This ajax call sends a get request to the rails endpoint that will retrieve
+            // the rail station nearer to the destination
             $.ajax({
                 type: "GET",
                 url: "/rail_stations",
@@ -192,7 +196,47 @@
                     var station_marker = new google.maps.Marker({
                         map: map,
                         position: nearest_station_location,
-                        title: 'NEAREST ARRIVAL STATION'
+                        title: 'NEAREST ARRIVAL RAIL STATION'
+                    });
+                }
+            });
+
+            // This ajax call sends a get request to the rails endpoint that will retrieve
+            // the metro station nearer to the destination
+            $.ajax({
+                type: "GET",
+                url: "/metro_stations",
+                data: { Lat: place.geometry.location.lat(), Lng: place.geometry.location.lng() } ,
+                dataType: "json",
+                success: function(data)
+                {
+                    nearest_station_location = new google.maps.LatLng(data.lat, data.lng);
+
+                    // Create a marker and set its position.
+                    var station_marker = new google.maps.Marker({
+                        map: map,
+                        position: nearest_station_location,
+                        title: 'NEAREST ARRIVAL METRO STATION'
+                    });
+                }
+            });
+
+            // This ajax call sends a get request to the rails endpoint that will retrieve
+            // the line station nearer to the destination
+            $.ajax({
+                type: "GET",
+                url: "/urban_lines",
+                data: { Lat: place.geometry.location.lat(), Lng: place.geometry.location.lng() } ,
+                dataType: "json",
+                success: function(data)
+                {
+                    nearest_station_location = new google.maps.LatLng(data.lat, data.lng);
+
+                    // Create a marker and set its position.
+                    var station_marker = new google.maps.Marker({
+                        map: map,
+                        position: nearest_station_location,
+                        title: 'NEAREST ARRIVAL LINE STATION'
                     });
                 }
             });
@@ -222,7 +266,6 @@
             });
         }
 
-
       function getNearestLineStation(){
 
         if (navigator.geolocation) {
@@ -243,7 +286,7 @@
                 var line_marker = new google.maps.Marker({
                   map: map,
                   position: nearest_line_location,
-                  title: 'NEAREST LINE STATION'
+                  title: 'NEAREST DEPARTURE LINE STATION'
                 });
               }
             });
@@ -252,7 +295,6 @@
           });
         }
       }
-
 
       function getNearestMetroStation(){
 
@@ -274,7 +316,7 @@
                 var metro_marker = new google.maps.Marker({
                   map: map,
                   position: nearest_metro_location,
-                  title: 'NEAREST METRO STATION'
+                  title: 'NEAREST DEPARTURE METRO STATION'
                 });
               }
             });
@@ -283,7 +325,6 @@
           });
         }
       }
-
 
         function getNearestRailStation(){
 
@@ -305,7 +346,7 @@
                             var station_marker = new google.maps.Marker({
                                 map: map,
                                 position: nearest_station_location,
-                                title: 'NEAREST DEPARTURE STATION'
+                                title: 'NEAREST DEPARTURE RAIL STATION'
                             });
                         }
                     });
