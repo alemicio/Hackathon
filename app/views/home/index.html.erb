@@ -161,6 +161,7 @@
             }
         }
 
+        // Function triggered since we have defined our destination
         destination_autocomplete.addListener('place_changed', function () {
             var place = destination_autocomplete.getPlace();
             if (!place.geometry) {
@@ -169,11 +170,18 @@
             }
             expandViewportToFitPlace(map, place);
 
-            // If the place has a geometry, store its place ID and route if we have
+            // Create a marker and set its position.
+            var destination_marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location,
+                title: 'DESTINATION'
+            });
+
+            /*// If the place has a geometry, store its place ID and route if we have
             // the other place ID
             destination_place_id = place.place_id;
             route(new google.maps.places.Place(latLng).getPlace().place_id, destination_place_id, travel_mode,
-                    directionsService, directionsDisplay);
+                    directionsService, directionsDisplay);*/
         });
 
         function route(origin_place_id, destination_place_id, travel_mode,
@@ -216,7 +224,7 @@
                             var station_marker = new google.maps.Marker({
                                 map: map,
                                 position: nearest_station_location,
-                                title: 'Hello World!'
+                                title: 'NEAREST STATION'
                             });
                         }
                     });
