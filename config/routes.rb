@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root :to => "home#index"
 
   resources :rail_stations
+  resources :metro_stations
 end
